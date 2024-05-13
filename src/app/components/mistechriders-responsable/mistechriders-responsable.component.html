@@ -1,0 +1,64 @@
+<div class="container mt-4 mb-3 card shadow-card p-4">
+  <h1 class="fw-bold text-center">Empleados</h1>
+  <p class="text-muted text-center">TechRiders y responsables de la empresa</p>
+  <div class="row" *ngIf="usuariosCargados">
+    <div class="col-md-4 mb-4" *ngFor="let usuario of usuarios">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title fw-bold">{{ usuario.techRider }}</h5>
+          <h6 class="card-subtitle text-body-secondary mb-1">
+            {{ usuario.email }}
+          </h6>
+          <h6 class="card-subtitle text-body-secondary mb-1">
+            Teléfono: {{ usuario.telefonoTechRider }}
+          </h6>
+        </div>
+      </div>
+    </div>
+  </div>
+  <img
+    *ngIf="!usuariosCargados"
+    class="d-block mx-auto w-25"
+    src="../../../assets/images/loading.gif"
+  />
+</div>
+<div class="container mt-4 card shadow-card p-4 mb-3">
+  <h1 class="text-center fw-bold">Charlas</h1>
+  <p class="text-muted text-center">
+    Todas las charlas asignadas a empleados de la empresa
+  </p>
+  <div
+    class="table-responsive card border-bottom-0 w-100"
+    *ngIf="charlasCargadas"
+  >
+    <table class="table mb-0">
+      <thead class="small rounded-4 table-secondary">
+        <tr>
+          <th class="text-muted">Descripcion</th>
+          <th class="text-muted">Fecha</th>
+          <th class="text-muted">Estado</th>
+          <th class="text-muted">Modalidad</th>
+          <th class="text-muted">Turno</th>
+          <th class="text-muted">TechRider</th>
+          <th class="text-muted">Provincia</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let charla of charlas">
+          <th>{{ charla.descripcionCharla }}</th>
+          <td>{{ charla.fechaCharla | date : "mediumDate" }}</td>
+          <td>{{ charla.estadoCharla }}</td>
+          <td>{{ charla.modalidad }}</td>
+          <td>{{ charla.turno }}</td>
+          <td>{{ charla.techRider }}</td>
+          <td>{{ charla.provincia }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <img
+    *ngIf="!charlasCargadas"
+    class="d-block mx-auto w-25"
+    src="../../../assets/images/loading.gif"
+  />
+</div>

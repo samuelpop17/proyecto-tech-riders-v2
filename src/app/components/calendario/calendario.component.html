@@ -1,0 +1,71 @@
+<div>
+  <div class="text-center card shadow-card p-3">
+    <div class="mb-3">
+      <h1 class="fw-bold text-center">Calendario</h1>
+    </div>
+    <div class="row">
+      <div class="col-3 text-sm">
+        <div
+          class="btn btn-dark w-100"
+          mwlCalendarPreviousView
+          [view]="view"
+          [(viewDate)]="viewDate"
+          (viewDateChange)="closeOpenMonthViewDay()"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-caret-left-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"
+            />
+          </svg>
+        </div>
+      </div>
+      <div class="col-6 mt-0 mt-md-1 text-muted">
+        <h3>{{ viewDate | calendarDate : view + "ViewTitle" : "es" }}</h3>
+      </div>
+      <div class="col-3">
+        <div
+          class="btn btn-dark w-100"
+          mwlCalendarNextView
+          [view]="view"
+          [(viewDate)]="viewDate"
+          (viewDateChange)="closeOpenMonthViewDay()"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-caret-right-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div class="card shadow-card p-3" [ngSwitch]="view">
+    <mwl-calendar-month-view
+      *ngSwitchCase="CalendarView.Month"
+      [viewDate]="viewDate"
+      [events]="events"
+      [refresh]="refresh"
+      [activeDayIsOpen]="activeDayIsOpen"
+      (dayClicked)="dayClicked($event.day)"
+      (eventClicked)="handleEvent('Clicked', $event.event)"
+      (eventTimesChanged)="eventTimesChanged($event)"
+      [weekStartsOn]="weekStartsOn"
+    >
+    </mwl-calendar-month-view>
+  </div>
+</div>

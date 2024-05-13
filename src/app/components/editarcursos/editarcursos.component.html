@@ -1,0 +1,80 @@
+<div class="card shadow-card p-4 mb-3">
+  <h1 class="fw-bold text-center">Editar cursos</h1>
+  <p class="text-muted text-center">
+    Modifica los cursos a los que impartes clase como profesor de tu centro
+  </p>
+  <div class="row" *ngIf="cursos && allCursos">
+    <div class="col-6" style="border-right: 2px solid rgba(33, 37, 41, 0.5)">
+      <h2 class="text-center">Tus cursos</h2>
+      <table class="mt-3 w-100 small">
+        <tbody>
+          <tr
+            *ngFor="let curso of cursos"
+            class="row d-flex align-items-center"
+          >
+            <td class="col-6 fw-bold text-center">{{ curso.nombreCurso }}</td>
+            <td class="col-6">
+              <button
+                class="btn btn-dark my-2 w-100 btn-sm"
+                (click)="eliminarCurso(curso.idCurso)"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-x-lg"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"
+                  />
+                </svg>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-6">
+      <h2 class="text-center">Otros cursos del centro</h2>
+      <table class="mt-3 w-100 small">
+        <tbody>
+          <tr
+            *ngFor="let curso of allCursos"
+            class="row d-flex align-items-center"
+          >
+            <td class="col-6 fw-bold text-center">
+              {{ curso.nombreCurso }}
+            </td>
+            <td class="col-6">
+              <button
+                class="btn btn-dark my-2 w-100 btn-sm"
+                (click)="anyadirCurso(curso.idCurso)"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-plus-lg"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"
+                  />
+                </svg>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <img
+    *ngIf="!cursos || !allCursos"
+    class="d-block mx-auto w-25"
+    src="../../../assets/images/loading.gif"
+  />
+</div>

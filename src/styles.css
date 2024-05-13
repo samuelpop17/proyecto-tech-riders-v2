@@ -1,0 +1,138 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+a,
+.dropdown-menu {
+  transition: 0.3s all ease;
+  -o-transition: 0.3s all ease;
+  -webkit-transition: 0.3s all ease;
+}
+
+body {
+  color: #333;
+  font-family: "Inter", sans-serif;
+  scroll-behavior: smooth;
+}
+
+body#bodyprincipal {
+  background-color: #f7f7f7;
+}
+
+.shadow-card {
+  border-radius: 0.75rem;
+  box-shadow: 0 0 #0000, 0 0 #0000, 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 0 #0000, 0 0 #0000, 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  background-color: white;
+}
+
+.btn {
+  font-weight: 700;
+}
+
+.nav-link,
+.btn-sm {
+  font-weight: 600;
+}
+
+.dropdown-item {
+  font-weight: 500;
+}
+
+.dropdown-menu {
+  animation-duration: 0.3s;
+  -webkit-animation-duration: 0.3s;
+  animation-fill-mode: both;
+  -webkit-animation-fill-mode: both;
+}
+
+@keyframes slideIn {
+  0% {
+    transform: translateY(1rem);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0rem);
+    opacity: 1;
+  }
+
+  0% {
+    transform: translateY(1rem);
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes slideIn {
+  0% {
+    -webkit-transform: transform;
+    -webkit-opacity: 0;
+  }
+
+  100% {
+    -webkit-transform: translateY(0);
+    -webkit-opacity: 1;
+  }
+
+  0% {
+    -webkit-transform: translateY(1rem);
+    -webkit-opacity: 0;
+  }
+}
+
+.dropdown-menu {
+  -webkit-animation-name: slideIn;
+  animation-name: slideIn;
+}
+
+.dropdown-center > .dropdown-menu {
+  inset: auto !important;
+}
+
+a.linkedin-button {
+  text-decoration-color: black;
+}
+
+.cal-month-view .cal-open-day-events {
+  background-color: #212529;
+}
+
+.cal-month-view .cal-day-badge {
+  background-color: #327fb9;
+}
+
+.cal-month-view .cal-day-cell.cal-today {
+  background-color: rgba(30, 144, 255, 0.2);
+}
+
+.cal-month-view .cal-day-cell.cal-today .cal-day-number {
+  font-size: 1.2rem;
+}
+
+[style^="--valoracion"]::after {
+  content: "★★★★★";
+  font-size: 2em;
+  white-space: nowrap;
+  background: linear-gradient(
+    90deg,
+    #327fb9 calc(var(--valoracion) * 20%),
+    #ddd calc(var(--valoracion) * 20%)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: #0000;
+}
+
+@media (min-width: 768px) {
+  #estadoEditarUsuAdmin {
+    margin-top: 1.4rem !important;
+  }
+}

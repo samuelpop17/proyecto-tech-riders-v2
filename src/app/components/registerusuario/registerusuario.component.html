@@ -1,0 +1,154 @@
+<div class="card shadow-card p-4 mb-3">
+  <h1 class="fw-bold text-center">Registrarse</h1>
+  <p class="text-muted text-center">
+    Introduce la información de tu nueva cuenta
+  </p>
+  <form #registerUsuario="ngForm" (ngSubmit)="registerUsu()" class="row">
+    <div class="mt-1">
+      <label class="form-label fw-bold">Rol</label>
+      <select
+        class="form-select"
+        name="selectrole"
+        #selectrole
+        (change)="changeEmpresasCentros()"
+      >
+        <option
+          *ngFor="let role of roles"
+          [value]="role.idRole"
+          [selected]="role.idRole == 3"
+        >
+          {{ role.tipoRole }}
+        </option>
+      </select>
+    </div>
+    <div class="mt-3 col-md-6">
+      <label class="form-label fw-bold">Nombre</label>
+      <input
+        type="text"
+        class="form-control"
+        name="controlnombre"
+        #controlnombre
+        placeholder="Tu nombre"
+      />
+    </div>
+    <div class="mt-3 col-md-6">
+      <label class="form-label fw-bold">Apellidos</label>
+      <input
+        type="text"
+        class="form-control"
+        name="controlapellidos"
+        #controlapellidos
+        placeholder="Tus apellidos"
+      />
+    </div>
+    <div class="mt-3 col-md-6">
+      <label class="form-label fw-bold">Email</label>
+      <input
+        type="text"
+        class="form-control"
+        name="controlemail"
+        #controlemail
+        placeholder="tuemail@example.com"
+      />
+    </div>
+    <div class="mt-3 col-md-6">
+      <label class="form-label fw-bold">Teléfono</label>
+      <input
+        type="text"
+        class="form-control"
+        name="controltlf"
+        #controltlf
+        placeholder="612345678"
+      />
+    </div>
+    <div class="mt-3">
+      <label class="form-label fw-bold d-inline">
+        <span>LinkedIn</span>
+        <div class="form-check form-switch">
+          <input
+            type="checkbox"
+            role="switch"
+            class="form-check-input"
+            [(ngModel)]="publico"
+            name="controllinkedinpublic"
+            #controllinkedinpublic
+          />
+          <label class="form-check-label fw-bold">¿Público?</label>
+        </div>
+      </label>
+      <input
+        type="text"
+        class="form-control"
+        name="controllinkedin"
+        #controllinkedin
+        placeholder="El enlace a tu LinkedIn"
+      />
+    </div>
+    <div class="mt-3">
+      <label class="form-label fw-bold">Contraseña</label>
+      <input
+        type="password"
+        autocomplete="current-password"
+        class="form-control"
+        name="controlpassword"
+        #controlpassword
+        placeholder="Tu contraseña"
+      />
+    </div>
+    <div class="mt-3 col-md-6">
+      <label class="form-label fw-bold">Provincia</label>
+      <select
+        class="form-select"
+        name="selectprovincia"
+        #selectprovincia
+        *ngIf="provincias"
+      >
+        <option
+          *ngFor="let provincia of provincias"
+          [value]="provincia.idProvincia"
+        >
+          {{ provincia.nombreProvincia }}
+        </option>
+      </select>
+      <img
+        *ngIf="!provincias"
+        class="d-block mx-auto w-25"
+        src="../../../assets/images/loading.gif"
+      />
+    </div>
+
+    <div class="mt-3 col-md-6">
+      <label class="form-label fw-bold">Empresa / Centro</label>
+      <select
+        class="form-select"
+        name="selectempresacentro"
+        #selectempresacentro
+        *ngIf="publicEmpresasCentros"
+      >
+        <option value="0" *ngIf="roleElegido == 3 || roleElegido == 4">
+          <span *ngIf="roleElegido == 3"> - A título personal - </span>
+          <span *ngIf="roleElegido == 4">
+            - Sin empresa (crear después) -
+          </span>
+        </option>
+        <option
+          *ngFor="let empresaCentro of publicEmpresasCentros"
+          [value]="empresaCentro.idEmpresaCentro"
+        >
+          {{ empresaCentro.nombre }}
+        </option>
+      </select>
+      <img
+        *ngIf="!publicEmpresasCentros"
+        class="d-block mx-auto w-25"
+        src="../../../assets/images/loading.gif"
+      />
+    </div>
+
+    <div class="col-12">
+      <button class="btn btn-dark rounded w-100 mt-3 py-2">
+        Crear usuario
+      </button>
+    </div>
+  </form>
+</div>

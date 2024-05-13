@@ -1,0 +1,198 @@
+<nav class="navbar navbar-expand-md bg-black" data-bs-theme="dark">
+  <div class="container-fluid">
+    <span class="navbar-brand me-4">
+      <a class="nav-link" [routerLink]="['/']">
+        <img src="/assets/images/techriders.png" height="39" width="98" />
+      </a>
+    </span>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item" *ngIf="!role">
+          <a class="nav-link" [routerLink]="['/']">Calendario</a>
+        </li>
+
+        <!-- ADMIN -->
+        <li class="nav-item dropdown" *ngIf="!role || role == 1">
+          <a
+            class="nav-link dropdown-toggle"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Listados
+          </a>
+
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" [routerLink]="['/listadostr']">
+                TechRiders
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" [routerLink]="['/listadoscentros']">
+                Centros
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" [routerLink]="['/listadosempresas']">
+                Empresas
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" [routerLink]="['/listados']">
+                Charlas
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item" *ngIf="role == 1">
+          <a class="nav-link" [routerLink]="['/peticiones']">
+            Peticiones
+            <span
+              class="position-absolute translate-middle badge rounded-pill bg-danger"
+            >
+              {{ numPeticiones }}
+            </span>
+          </a>
+        </li>
+
+        <!-- DROPDOWN CHARLAS PROFESOR -->
+        <li class="nav-item dropdown" *ngIf="role == 2">
+          <a
+            class="nav-link dropdown-toggle"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Charlas
+          </a>
+
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" [routerLink]="['/charlas/mis-charlas']">
+                Mis charlas
+              </a>
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                [routerLink]="['/charlas/solicitar-charla']"
+              >
+                Solicitar charla
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- DropDown charlas TechRiders -->
+        <li
+          class="nav-item dropdown"
+          *ngIf="role == 3 || (role == 4 && estadoEmpresa == 1)"
+        >
+          <a
+            class="nav-link dropdown-toggle"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Charlas
+            <span
+              class="position-absolute translate-middle bg-danger border border-danger rounded-circle"
+              style="padding: 0.4rem !important"
+              *ngIf="numCharlas > 0"
+            >
+            </span>
+          </a>
+
+          <ul class="dropdown-menu">
+            <div>
+              <li>
+                <a class="dropdown-item" [routerLink]="['/charlastechriders']">
+                  Charlas disponibles
+                  <span
+                    class="position-absolute translate-middle badge rounded-pill bg-danger"
+                  >
+                    {{ numCharlas }}
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" [routerLink]="['/mischarlastech']">
+                  Mis charlas
+                </a>
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  [routerLink]="['/calendariomitechrider']"
+                >
+                  Mi calendario
+                </a>
+              </li>
+            </div>
+          </ul>
+        </li>
+
+        <!-- Menu role 4 representante -->
+        <li class="nav-item" *ngIf="role == 4 && estadoEmpresa == 1">
+          <a class="nav-link" [routerLink]="['/charlas-empleados-empresa']">
+            Mi empresa
+          </a>
+        </li>
+
+        <!-- DROPDOWN USUARIO -->
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Usuario
+          </a>
+
+          <ul class="dropdown-menu">
+            <!-- NAVBAR PARA PARTE PÚBLICA -->
+            <div *ngIf="!role">
+              <li>
+                <a class="dropdown-item" [routerLink]="['/login']">
+                  Iniciar sesión
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" [routerLink]="['/registrar-usuario']">
+                  Registrarse
+                </a>
+              </li>
+            </div>
+
+            <!-- NAVBAR PARTE PRIVADA -->
+            <div *ngIf="role">
+              <li>
+                <a class="dropdown-item" [routerLink]="['/usuario/perfil']">
+                  Perfil
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item" [routerLink]="['/logout']">
+                  Cerrar sesión
+                </a>
+              </li>
+            </div>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

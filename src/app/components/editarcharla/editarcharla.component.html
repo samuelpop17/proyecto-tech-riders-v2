@@ -1,0 +1,196 @@
+<div class="card shadow-card p-4 mb-3">
+  <h1 class="fw-bold text-center">Editar charla</h1>
+  <p class="text-muted text-center">Editar los detalles de la charla</p>
+  <form
+    #editarCharlaAdministrador="ngForm"
+    (ngSubmit)="editarCharlaAdmin()"
+    class="row mt-3"
+    *ngIf="role == 1 && charla && camposAdminCargados"
+  >
+    <div class="mt-1 col-md-6 mb-3 mb-md-3">
+      <label class="form-label fw-bold d-inline">
+        <span>TechRider</span>
+        <div class="form-check form-switch">
+          <input
+            type="checkbox"
+            role="switch"
+            class="form-check-input"
+            (change)="changeTechRidersAdmin($event)"
+          />
+          <label class="form-check-label fw-bold">
+            Con tecnologías de charla
+          </label>
+        </div>
+      </label>
+      <select
+        class="form-select"
+        #controlTechRider
+        name="controlTechRider"
+        *ngIf="techRidersCargados"
+      >
+        <option
+          *ngFor="let techrider of usuarios"
+          [value]="techrider.idUsuario"
+          [selected]="techrider.idUsuario == charla.idTechRider"
+        >
+          {{ techrider.nombre }} {{ techrider.apellidos }} (ID
+          {{ techrider.idUsuario }})
+        </option>
+      </select>
+      <img
+        *ngIf="!techRidersCargados"
+        class="d-block mx-auto w-25"
+        src="../../../assets/images/loading.gif"
+      />
+    </div>
+
+    <div id="estadoEditarUsuAdmin" class="mt-1 col-md-6 mb-3 mb-md-3">
+      <label class="form-label fw-bold">Estado</label>
+      <select class="form-select" #controlEstado name="controlEstado">
+        <option
+          *ngFor="let estado of estados"
+          [value]="estado.idEstadosCharla"
+          [selected]="estado.idEstadosCharla == charla.idEstadoCharla"
+        >
+          {{ estado.tipo }}
+        </option>
+      </select>
+    </div>
+    <div class="mt-1 col-md-6 mb-3 mb-md-0">
+      <label class="form-label fw-bold">Descripción</label>
+      <input
+        class="form-control"
+        type="text"
+        #controldescripcion
+        name="controldescripcion"
+        [value]="charla.descripcion"
+      />
+    </div>
+    <div class="mt-1 col-md-6">
+      <label class="form-label fw-bold">Fecha Charla</label>
+      <input
+        class="form-control"
+        type="datetime-local"
+        #controlfecha
+        name="controlfecha"
+        [value]="charla.fechaCharla"
+      />
+    </div>
+    <div class="mt-3 col-md-6">
+      <label class="form-label fw-bold">Modalidad</label>
+      <select
+        class="form-select"
+        #selectmodalidad
+        name="selectmodalidad"
+        [value]="charla.modalidad"
+      >
+        <option value="null">SIN DEFINIR</option>
+        <option value="ONLINE">ONLINE</option>
+        <option value="PRESENCIAL">PRESENCIAL</option>
+      </select>
+    </div>
+    <div class="mt-3 col-md-6">
+      <label class="form-label fw-bold">Turno</label>
+      <select
+        class="form-select"
+        #selectturno
+        name="selectturno"
+        [value]="charla.turno"
+      >
+        <option value="MAÑANA">MAÑANA</option>
+        <option value="TARDE">TARDE</option>
+      </select>
+    </div>
+
+    <div class="mt-3 col-12">
+      <label class="form-label fw-bold">Observaciones</label>
+      <textarea
+        class="form-control"
+        #controlobservaciones
+        name="controlobservaciones"
+        [value]="charla.observaciones"
+      ></textarea>
+    </div>
+    <div class="col-12">
+      <button class="btn btn-dark rounded w-100 mt-3 py-2">
+        Editar charla
+      </button>
+    </div>
+  </form>
+  <img
+    *ngIf="role == 1 && (!charla || !camposAdminCargados)"
+    class="d-block mx-auto w-25"
+    src="../../../assets/images/loading.gif"
+  />
+  <form
+    #editarCharlaNormal="ngForm"
+    (ngSubmit)="editarCharla()"
+    class="row mt-3"
+    *ngIf="role != 1 && charla"
+  >
+    <div class="mt-1 col-md-6 mb-3 mb-md-0">
+      <label class="form-label fw-bold">Descripción</label>
+      <input
+        class="form-control"
+        type="text"
+        #controldescripcion
+        name="controldescripcion"
+        [value]="charla.descripcion"
+      />
+    </div>
+    <div class="mt-1 col-md-6">
+      <label class="form-label fw-bold">Fecha Charla</label>
+      <input
+        class="form-control"
+        type="datetime-local"
+        #controlfecha
+        name="controlfecha"
+        [value]="charla.fechaCharla"
+      />
+    </div>
+    <div class="mt-3 col-md-6">
+      <label class="form-label fw-bold">Modalidad</label>
+      <select
+        class="form-select"
+        #selectmodalidad
+        name="selectmodalidad"
+        [value]="charla.modalidad"
+      >
+        <option value="null">SIN DEFINIR</option>
+        <option value="ONLINE">ONLINE</option>
+        <option value="PRESENCIAL">PRESENCIAL</option>
+      </select>
+    </div>
+    <div class="mt-3 col-md-6">
+      <label class="form-label fw-bold">Turno</label>
+      <select
+        class="form-select"
+        #selectturno
+        name="selectturno"
+        [value]="charla.turno"
+      >
+        <option value="MAÑANA">MAÑANA</option>
+        <option value="TARDE">TARDE</option>
+      </select>
+    </div>
+    <div class="mt-3 col-12">
+      <label class="form-label fw-bold">Observaciones</label>
+      <textarea
+        class="form-control"
+        #controlobservaciones
+        name="controlobservaciones"
+        [value]="charla.observaciones"
+      ></textarea>
+    </div>
+    <div class="col-12">
+      <button class="btn btn-dark rounded w-100 mt-3 py-2">
+        Editar charla
+      </button>
+    </div>
+  </form>
+  <img
+    *ngIf="role != 1 && !charla"
+    class="d-block mx-auto w-25"
+    src="../../../assets/images/loading.gif"
+  />
+</div>
